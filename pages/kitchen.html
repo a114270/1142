@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Kitchen</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../style.css">
+
+</head>
+
+<!-- class＝～　は～という名前を付けるという意味 -->
+<body class="kitchen-page">
+
+
+    <!-- ヘッダー -->
+    <header class="kitchen-header">
+
+        <p class="kitchen-small-title">
+            MY COOKING JOURNAL
+        </p>
+        <h1>
+            🍳 My Kitchen
+        </h1>
+        <p class="kitchen-subtitle">
+            毎日の自炊を、ちょっと楽しく記録。
+        </p>
+
+    </header>
+
+
+     <!-- ====================
+         メイン
+    ==================== -->
+
+    <main class="kitchen-main">
+
+        <!-- 今月のデータ -->
+        <section class="kitchen-stats">
+
+            <div class="stat-card">
+                <span class="stat-icon">
+                    💰
+                </span>
+                <p>
+                    今月の食費
+                </p>
+                <strong>
+                    ¥8,240
+                </strong>
+            </div>
+
+
+            <div class="stat-card">
+                <span class="stat-icon">
+                    🍳
+                </span>
+                <p>
+                    今月の自炊
+                </p>
+                <strong>
+                    18回
+                </strong>
+            </div>
+
+
+            <div class="stat-card">
+                <span class="stat-icon">
+                    🍽️
+                </span>
+                <p>
+                    平均1食
+                </p>
+                <strong  id="averageMealPrice">
+                    ¥0
+                </strong>
+            </div>
+
+        </section>
+
+
+        <!-- ========================================
+            Cooking Level
+        ======================================== -->
+
+        <section class="level-card">
+
+            <div class="level-header">
+                <div>
+                    <p class="section-label">
+                        COOKING LEVEL
+                    </p>
+                    <!-- ★ idを追加 -->
+                    <h2 id="cookingLevel">
+                        Lv.1
+                    </h2>
+                </div>
+
+                <!-- ★ idを追加 -->
+                <span
+                    class="level-icon"
+                    id="levelIcon"
+                >
+                    🌱
+                </span>
+            </div>
+
+            <!-- レベルゲージ -->
+            <div class="level-bar">
+                <!-- ★ idを追加 -->
+                <div
+                    class="level-progress"
+                    id="levelProgress"
+                >
+                </div>
+            </div>
+
+            <!-- ★ idを追加 -->
+            <p
+                class="level-text"
+                id="levelText"
+            >
+                あと5品でLv.2！
+            </p>
+
+            <!-- ========================================
+                Cooking Level の称号
+            ======================================== -->
+
+            <p
+                class="level-title"
+                id="levelTitle"
+            >
+                🌱 自炊ビギナー
+            </p>
+
+        </section>
+
+
+
+        
+        <!-- ========================================
+            今日何作ろう？
+        ======================================== -->
+
+        <section class="today-card">
+
+            <!-- 左側：説明 -->
+            <div>
+                <!-- 小さいタイトル -->
+                <p class="section-label">
+                    TODAY'S MENU
+                </p>
+                <!-- メインタイトル -->
+                <h2>
+                    🍳 今日、何作ろう？
+                </h2>
+                <p>
+                    今まで作った料理の中から<br>
+                    今日のメニューを探してみよう。
+                </p>
+            </div>
+
+
+
+            <!-- 右側：条件を選ぶところ -->
+            <div class="menu-search">
+                <!-- 分類 -->
+                <select id="searchCategory">
+                    <option value="all">
+                        なんでも
+                    </option>
+                    <option value="主菜">
+                        主菜
+                    </option>
+                    <option value="副菜">
+                        副菜
+                    </option>
+                    <option value="ごはん">
+                        ごはん
+                    </option>
+                    <option value="麺">
+                        麺
+                    </option>
+                    <option value="汁物">
+                        汁物
+                    </option>
+                    <option value="その他">
+                        その他
+                    </option>
+                </select>
+
+                <!-- 予算 -->
+                <select id="searchPrice">
+                    <option value="all">
+                        予算なんでも
+                    </option>
+                    <option value="300">
+                        300円以下
+                    </option>
+                    <option value="500">
+                        500円以下
+                    </option>
+                    <option value="700">
+                        700円以下
+                    </option>
+                </select>
+
+                <!-- 探すボタン -->
+                <button
+                    class="search-button"
+                    id="searchMenuButton"
+                >
+                    探してみる →
+                </button>
+            </div>
+        </section>
+
+         <!-- ========================================
+                今日のおすすめ結果
+            ======================================== -->
+
+            <section
+                class="menu-result"
+                id="menuResult"
+            >
+                <!-- JavaScriptで結果を表示する -->
+            </section>
+
+
+        <!-- ========================================
+            献立を記録する
+        ======================================== -->
+
+        <section class="meal-section">
+
+            <!-- セクションタイトル -->
+            <div class="section-title">
+
+                <div>
+                    <p class="section-label">
+                        MEAL RECORD
+                    </p>
+
+                    <h2>
+                        🍽️ 献立を記録
+                    </h2>
+                </div>
+
+                <!-- 開閉ボタン -->
+                <button
+                    id="mealToggleButton"
+                    class="section-toggle-button"
+                >
+                    ＋
+                </button>
+
+            </div>
+
+
+            <!-- 献立フォーム -->
+            <div
+                class="meal-card is-hidden"
+                id="mealForm"
+            >
+
+        
+
+
+                <!-- 日付 -->
+                <div class="meal-form-group">
+                    <label for="mealDate">
+                        📅 食べた日
+                    </label>
+                    <input
+                        type="date"
+                        id="mealDate"
+                    >
+                </div>
+
+                <!-- 食事の種類 -->
+                <div class="meal-form-group">
+
+                    <label for="mealType">
+                        🍴 食事
+                    </label>
+
+                    <select id="mealType">
+
+                        <option value="">
+                            選択してください
+                        </option>
+
+                        <option value="朝">
+                            🌅 朝
+                        </option>
+
+                        <option value="昼">
+                            ☀️ 昼
+                        </option>
+
+                        <option value="晩">
+                            🌙 晩
+                        </option>
+
+                        <option value="間食">
+                            🍪 間食
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <!-- 主食 -->
+
+                <div class="meal-form-group">
+                    <label for="mealMain">
+                        🍚 主食
+                    </label>
+                    <select id="mealMain">
+                        <option value="">
+                            選択してください
+                        </option>
+                    </select>
+                </div>
+
+                <!-- 汁物 -->
+
+                <div class="meal-form-group">
+                    <label for="mealSoup">
+                        🥣 汁物
+                    </label>
+                    <select id="mealSoup">
+                        <option value="">
+                            選択してください
+                        </option>
+                    </select>
+                </div>
+
+                <!-- 主菜 -->
+
+                <div class="meal-form-group">
+                    <label for="mealMainDish">
+                        🍳 主菜
+                    </label>
+
+                    <select id="mealMainDish">
+                        <option value="">
+                            選択してください
+                        </option>
+                    </select>
+                </div>
+
+                <!-- 副菜 -->
+                <div class="meal-form-group">
+                    <label for="mealSideDish">
+                        🥗 副菜
+                    </label>
+
+                    <select id="mealSideDish">
+                        <option value="">
+                            選択してください
+                        </option>
+                    </select>
+                </div>
+
+                <!-- 献立を保存 -->
+
+                <button
+                    class="save-meal-button"
+                    onclick="saveMeal()"
+                >
+                    ＋ この献立を記録する
+                </button>
+            </div>
+        </section>
+
+
+        <!-- ========================================
+            保存した献立
+        ======================================== -->
+
+        <section class="saved-meals-section">
+
+            <div class="section-title">
+
+                <div>
+                    <p class="section-label">
+                        MEAL HISTORY
+                    </p>
+
+                    <h2>
+                        🍽️ 献立の記録
+                    </h2>
+                </div>
+
+                <!-- 開閉ボタン -->
+                <button
+                    id="savedMealToggleButton"
+                    class="section-toggle-button"
+                >
+                    ＋
+                </button>
+
+            </div>
+
+
+            <!-- 保存した献立 -->
+            <div
+                id="savedMealContent"
+                class="saved-meal-content is-hidden"
+            >
+
+                <div
+                    id="mealCards"
+                    class="meal-cards"
+                >
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- 最近作った料理 -->
+        <section class="recent-section">
+            <div class="section-title">
+                <div>
+                    <p class="section-label">
+                        RECENTLY COOKED
+                    </p>
+                    <h2>
+                        最近作った料理
+                    </h2>
+                </div>
+                <button
+                    id="showAllRecipesButton"
+                    class="show-all-button"
+                >
+                    すべて見る →
+                </button>
+            </div>
+
+
+            <!-- ここにJavaScriptで料理カードを追加する -->
+            <div class="recipe-cards" id="recipeCards">
+                
+            </div>
+
+        </section>
+
+        
+
+        <!-- 料理を追加 -->
+        <section class="add-section">
+            <button class="add-recipe-button">
+                ＋ 新しい料理を記録する
+            </button>
+
+        </section>
+
+        <!-- =================================
+         料理を追加する入力フォーム
+         ================================= -->
+         <section class="recipe-form" id="recipeForm">
+            <h2>
+                🍳 新しい料理を記録
+            </h2>
+
+            <!-- ========================================
+                料理写真
+            ======================================== -->
+            <div class="form-group">
+                <!-- 項目名 -->
+                <label for="recipeImage">
+                    📷 料理の写真
+                </label>
+                <!-- 写真を選択 -->
+                <input
+                    type="file"
+                    id="recipeImage"
+                    accept="image/*"
+                >
+                <!-- 選んだ写真のプレビュー -->
+                <div
+                    id="imagePreview"
+                    class="image-preview"
+                >
+                </div>
+            </div>
+
+            <!-- ==========================
+                料理名
+            =========================== -->
+            <label>
+                料理名
+
+                <input
+                    type="text"
+                    id="recipeName"
+                    placeholder="例：豚肉の生姜焼き"
+                >
+            </label>
+
+
+            <!-- ==========================
+             作った日
+             ========================== -->
+            <label>
+                作った日
+                <!-- 日付を入力する欄 -->
+                <input
+                    type="date"
+                    id="recipeDate"
+                >
+            </label>
+
+
+            <!-- ==========================
+                分類
+            =========================== -->
+
+            <label>
+                分類
+
+                <select id="recipeCategory">
+                    <option value="主菜">
+                        主菜
+                    </option>
+                    <option value="副菜">
+                        副菜
+                    </option>
+                    <option value="主食">
+                        主食
+                    </option>
+                    <option value="汁物">
+                        汁物
+                    </option>
+                    <option value="その他">
+                        その他
+                    </option>
+
+                </select>
+
+            </label>
+
+
+
+            <!-- ==========================
+                材料費
+            =========================== -->
+
+            <label>
+                材料費
+
+                <input
+                    type="number"
+                    id="recipePrice"
+                    placeholder="例：740"
+                    min="0"
+                >
+                円
+            </label>
+
+
+
+            <!-- ==========================
+                何食分？
+            =========================== -->
+
+            <label>
+                何食分？
+
+                <input
+                    type="number"
+                    id="recipeServings"
+                    placeholder="例：4"
+                    min="1"
+                >
+
+                食
+            </label>
+
+
+
+            <!-- ==========================
+                1食あたりの値段
+            =========================== -->
+
+            <div class="price-result">
+
+                <p>
+                    💰 1食あたり
+                </p>
+
+                <strong id="pricePerMeal">
+                    ¥ -
+                </strong>
+
+            </div>
+
+
+
+            <!-- ==========================
+                総合評価
+            =========================== -->
+
+            <label>
+                総合評価
+
+                <select id="recipeRating">
+
+                    <option value="5">
+                        ★★★★★
+                    </option>
+
+                    <option value="4">
+                        ★★★★☆
+                    </option>
+
+                    <option value="3">
+                        ★★★☆☆
+                    </option>
+
+                    <option value="2">
+                        ★★☆☆☆
+                    </option>
+
+                    <option value="1">
+                        ★☆☆☆☆
+                    </option>
+
+                </select>
+
+            </label>
+
+
+
+            <!-- ==========================
+                メモ
+            =========================== -->
+
+            <label>
+                メモ
+                <textarea
+                    id="recipeMemo"
+                    placeholder="味や次回作るときのメモなど"
+                ></textarea>
+
+            </label>
+
+
+
+            <!-- ==========================
+                保存ボタン
+            =========================== -->
+
+            <button id="saveRecipeButton">
+                保存する
+            </button>
+
+    </section>
+
+    <!-- ========================================
+            今月の食費グラフ
+        ======================================== -->
+
+        <section class="food-chart-section">
+
+            <!-- セクションタイトル -->
+            <div class="section-title">
+
+                <div>
+
+                    <!-- 小さいタイトル -->
+                    <p class="section-label">
+                        FOOD EXPENSES
+                    </p>
+
+                    <!-- メインタイトル -->
+                    <h2>
+                        📊 今月の食費
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- グラフを入れる箱 -->
+            <div class="food-chart-card">
+
+                <!-- グラフ -->
+                <div
+                    class="food-chart"
+                    id="foodChart"
+                >
+                    <!-- JavaScriptで棒グラフを作る -->
+                </div>
+
+
+                <!-- 今月の合計 -->
+                <div class="food-chart-total">
+
+                    <span>
+                        今月の食費
+                    </span>
+
+                    <strong id="chartTotal">
+                        ¥0
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+</main>
+    <a href="../index.html">
+        Homeへ戻る
+    </a>
+
+<!-- JavaScriptを読み込む -->
+<script src="../script.js"></script>
+
+</body>
+
+</html>
