@@ -1,0 +1,1870 @@
+/* =========================
+   ページ全体
+========================= */
+
+body{
+    /* 本文用フォント */
+    font-family:"DotGothic16", sans-serif;
+    /* 中央寄せ */
+    text-align:center;
+    /* 画面いっぱい表示 */
+    min-height:100vh;
+
+    /*空→海のグラデーション*/
+    background:
+    linear-gradient(
+        135deg,
+        #eef8fb 0%,
+        #cfe8ef 50%,
+        #ddd8ed 100%
+    );
+    background-attachment:fixed;
+    /* 基本文字色 */
+    color:#364b73;
+}
+
+
+
+/* =========================
+   タイトル
+========================= */
+h1{
+    /* ゲームタイトル風 */
+    font-family:"DotGothic16", sans-serif;
+    font-size:38px;
+    letter-spacing:2px;
+    /*水晶っぽい光*/
+    text-shadow:
+    0 0 10px white,
+    0 0 20px #b9e9f5;
+}
+
+
+
+/* =========================
+   カード配置
+========================= */
+.container{
+    /* 横並び */
+    display:flex;
+    /* 中央寄せ */
+    justify-content:center;
+    /* カード間の距離 */
+    gap:30px;
+    margin-top:50px;
+}
+
+
+
+/* =========================
+   カード
+========================= */
+.card{
+    /* カードサイズ */
+    width:180px;
+    /* 高さ */
+    min-height:120px;
+    /* 内側余白 */
+    padding:25px;
+    /*半透明ガラス*/
+    background:
+    rgba(
+        255,
+        255,
+        255,
+        0.35
+    );
+
+    /* 白い枠 */
+    border:
+    1px solid
+    rgba(
+        255,
+        255,
+        255,
+        0.7
+    );
+
+    /* 角丸 */
+    border-radius:20px;
+
+    /*背景をぼかすガラス風*/
+    backdrop-filter:blur(12px);
+
+
+    /*光る影*/
+    box-shadow:
+    0 0 25px
+    rgba(
+        255,
+        255,
+        255,
+        0.5
+    );
+
+    /* 動きを滑らかに */
+    transition:0.3s;
+}
+
+
+
+/* =========================
+   リンク設定
+========================= */
+/*aタグの青色・下線を消す*/
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+
+/* =========================
+   カード文字
+========================= */
+/*英語カテゴリ*/
+.card h3{
+    /* 文字間隔 */
+    letter-spacing:3px;
+    /* 少し薄く */
+    opacity:0.7;
+    font-family:"DotGothic16", sans-serif;
+    font-size:20px;
+    font-weight:600;
+}
+
+/*メインタイトル*/
+.card h2{
+    /* ドット風 */
+    font-family:"Zen Maru Gothic", sans-serif;
+    font-size:20px;
+}
+
+
+/* =========================
+   カード操作
+========================= */
+/*マウスを置いた時*/
+.card:hover{
+    /* 少し浮く */
+    transform:translateY(-10px);
+    /*光を強くする*/
+    box-shadow:
+    0 0 35px
+    rgba(
+        120,
+        220,
+        255,
+        0.8
+    );
+}
+
+
+/* =========================
+   ローディング画面
+========================= */
+
+#loading{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:linear-gradient(
+        180deg,
+        #dff6ff,
+        #9fd8ef,
+        #6aaed6
+    );
+
+    display:flex;
+
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+    transition:opacity 2s;
+}
+
+
+/* 消えるとき */
+#loading.hide{
+    opacity:0;
+    pointer-events:none;
+}
+
+
+
+
+/* =========================
+   カード登場アニメーション
+========================= */
+
+/* 最初は見えない */
+.card{
+    opacity:0;
+    transform:translateY(30px);
+}
+
+/* JavaScriptがshowを付けると表示 */
+.card.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+
+
+
+/* =========================
+   キラキラ
+========================= */
+
+.sparkle{
+
+    position:fixed;
+
+    width:8px;
+    height:8px;
+
+    border-radius:50%;
+
+    background:white;
+
+    box-shadow:
+
+        0 0 10px white,
+
+        0 0 20px #9fe8ff;
+
+    pointer-events:none;
+
+    animation:float 6s linear forwards;
+
+}
+
+
+
+@keyframes float{
+    from{
+        transform:translateY(0);
+        opacity:0;
+    }
+    20%{
+        opacity:1;
+    }
+    to{
+        transform:
+        translateY(-200px)
+        translateX(40px);
+        opacity:0;
+    }
+
+}
+
+
+/* =========================
+   泡
+========================= */
+
+.bubble{
+    position:fixed;
+    border-radius:50%;
+    background:rgba(255,255,255,0.18);
+    border:1px solid rgba(255,255,255,0.6);
+    backdrop-filter:blur(2px);
+    pointer-events:none;
+    animation:bubbleFloat 8s linear forwards;
+}
+
+
+/* 泡の動き */
+@keyframes bubbleFloat{
+    from{
+        transform:translateY(0);
+        opacity:0;
+    }
+    20%{
+        opacity:0.8;
+    }
+    to{
+        transform:
+            translateY(-700px)
+            translateX(40px);
+        opacity:0;
+    }
+
+}
+
+/* =========================
+   箏曲カード
+========================= */
+.music-container{
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    flex-wrap:wrap;
+}
+
+.music-card{
+    width:300px;
+    padding:25px;
+    background:
+    rgba(
+    255,
+    255,
+    255,
+    0.35
+    );
+
+    border-radius:25px;
+    backdrop-filter:blur(10px);
+    box-shadow:
+    0 0 25px rgba(255,255,255,0.5);
+    transition:0.3s;
+}
+
+.music-card:hover{
+    transform:translateY(-5px);
+}
+
+.music-card h2{
+    font-family:"DotGothic16";
+}
+
+
+/* =========================
+   アルバムジャケット
+========================= */
+.album-card{
+    width:280px;
+    padding:20px;
+    background:
+    rgba(
+    255,
+    255,
+    255,
+    0.45
+    );
+
+    border-radius:25px;
+    backdrop-filter:blur(10px);
+    box-shadow:
+    0 0 25px rgba(255,255,255,0.5);
+    transition:0.3s;
+}
+
+.album-cover{
+    position:relative;
+}
+
+/* ジャケット画像 */
+.jacket{
+    width:100%;
+    height:280px;
+    object-fit:cover;
+    border-radius:20px;
+}
+
+
+/* ホバー */
+.album-card:hover{
+    transform:translateY(-10px);
+    box-shadow:
+    0 0 40px rgba(255,255,255,0.8);
+}
+
+
+/* 再生中 */
+.album-card.playing{
+    box-shadow:
+    0 0 40px #a1f6e3,
+    0 0 70px #ccd0ee;
+    transform:translateY(-10px);
+}
+
+
+
+/* =========================
+   Koto Timeline
+========================= */
+
+.timeline-section{
+    margin-top:130px;
+}
+
+.timeline{
+    width:1000px;
+    max-width:90%;
+    margin:70px auto;
+    position:relative;
+}
+
+
+/* 真ん中の線 */
+.timeline::before{
+    content:"";
+    position:absolute;
+    left:180px;
+    top:0;
+    bottom:0;
+    width:2px;
+    background:
+    rgba(
+    255,
+    255,
+    255,
+    0.7
+    );
+}
+
+/* 1つ分 */
+.timeline-item{
+    display:flex;
+    align-items:center;
+    margin-bottom:65px;
+}
+
+/* 年 */
+.timeline-year{
+    width:150px;
+    flex-shrink:0;
+    font-family:"DotGothic16";
+    font-size:32px;
+    opacity: 0.55;
+    text-align:right;
+}
+
+
+/* 内容 */
+.timeline-content{
+    position:relative;
+    margin-left:75px;
+    padding:5px 0;
+}
+
+
+
+/* カード */
+.timeline-card{
+    position:relative;
+    width:500px;
+    padding:18px 22px;
+    background:
+    rgba(
+    255,
+    255,
+    255,
+    0.20
+    );
+
+    border:
+    1px solid
+    rgba(
+    255,
+    255,
+    255,
+    0.5
+    );
+
+    border-radius:18px;
+    backdrop-filter:blur(10px);
+    box-shadow:
+    0 0 15px
+    rgba(
+    255,
+    255,
+    255,
+    0.25
+    );
+
+    transition:0.3s;
+}
+
+
+
+/* カードの丸 */
+.timeline-card::before{
+    content:"";
+    position:absolute;
+    left:-20px;
+    top:50%;
+    width:12px;
+    height:12px;
+    background:white;
+    border-radius:50%;
+    transform:translateY(-50%);
+    box-shadow:
+    0 0 12px white,
+    0 0 25px rgba(255,255,255,0.9);
+}
+
+
+/* 曲名 */
+.timeline-content h3{
+    margin:0;
+    font-family:"Zen Maru Gothic", sans-serif;
+    font-size:21px;
+    font-weight:600;
+}
+
+
+/* 一言 */
+.timeline-content p{
+    margin:6px 0 0;
+    font-size:14px;
+    opacity:0.65;
+}
+
+
+
+/* ホバー */
+.timeline-card:hover{
+    transform:translateY(-5px);
+    box-shadow:
+    0 0 30px
+    rgba(255, 255, 255, 0.6);
+}
+
+
+/* カードタイトル */
+.timeline-card h3{
+    margin:0 0 5px;
+    font-family:"DotGothic16";
+    font-size:15px;
+}
+
+/* コメント */
+.timeline-card p{
+    margin:0;
+    font-size:14px;
+    opacity:0.8;
+}
+
+
+
+
+
+/* 思い出文章 */
+.memory-text{
+    margin-top:20px;
+    padding:15px;
+    background:
+    rgba(
+    255,
+    255,
+    255,
+    0.3
+    );
+    border-radius:15px;
+    line-height:1.8;
+    display:none;
+}
+
+/* ボタン */
+.memory-button{
+    margin-top:15px;
+    padding:10px 25px;
+    border:none;
+    border-radius:20px;
+    background:#f2def5cb;
+    color:#364b73;
+    cursor:pointer;
+    white-space:nowrap;
+}
+
+/* 写真*/
+.timeline-photo{
+    width:100%;
+    height:170px;
+    object-fit:cover;
+    border-radius:16px;
+    margin:8px 0 12px;
+    box-shadow:
+    0 0 12px
+    rgba(
+        255,
+        255,
+        255,
+        0.4
+    );
+}
+
+/* 音源*/
+.timeline-music{
+    margin-top:12px;
+    padding:10px 12px;
+    background:
+    rgba(
+        255,
+        255,
+        255,
+        0.22
+    );
+    border-radius:13px;
+}
+.timeline-music p{
+    margin:0 0 6px;
+    font-size:14px;
+}
+
+
+.timeline-music audio{
+    width:100%;
+    height:35px;
+}
+
+
+
+
+
+
+
+/* =====================================
+   My Kitchen
+===================================== */
+
+/* ページ全体 */
+/* class=~ で名付けたkitchen-page↓*/
+.kitchen-page {
+    background: #f7f0e4;
+    color: #51463c;
+    font-family: "Zen Maru Gothic", sans-serif;
+}
+
+/* ヘッダー */
+.kitchen-header {
+    /* 文字を中央揃えにする */
+    text-align: center;
+    /* 上・左右・下の余白を作る */
+    padding: 65px 20px 40px;
+}
+
+.kitchen-small-title {
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: #a18f7d;
+    margin-bottom: 12px;
+}
+
+.kitchen-header h1 {
+    font-family: "DotGothic16", sans-serif;
+    font-size: 46px;
+
+    color: #51463c;
+
+    text-shadow: none;
+    filter: none;
+
+    margin: 0 0 12px;
+}
+
+.kitchen-subtitle {
+    color: #8f8173;
+    font-size: 15px;
+}
+
+/* メイン */
+.kitchen-main {
+    width: 90%;
+    max-width: 1050px;
+    margin: 0 auto 80px;
+}
+
+
+
+/* =====================================
+   今月のデータ
+===================================== */
+.kitchen-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.stat-card {
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(120, 100, 80, 0.12);
+    border-radius: 20px;
+    padding: 25px;
+    text-align: center;
+    box-shadow:
+        0 5px 20px rgba(80, 60, 40, 0.06);
+}
+
+.stat-icon {
+    font-size: 25px;
+}
+
+.stat-card p {
+    font-size: 13px;
+    color: #948477;
+
+    margin: 8px 0;
+}
+
+.stat-card strong {
+    font-size: 25px;
+    color: #5a4a3d;
+}
+
+
+
+/* =====================================
+   今日何作ろう？
+===================================== */
+.today-card {
+    background: #e8dfcf;
+    border-radius: 25px;
+    padding: 35px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.section-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #a18d78;
+    margin: 0 0 5px;
+}
+
+
+.today-card h2 {
+    font-size: 25px;
+    margin: 5px 0 10px;
+}
+
+
+.today-card p {
+    color: #7d7064;
+    line-height: 1.8;
+}
+
+
+.search-button {
+    border: none;
+    background: #8d9a79;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 30px;
+    font-family: "Zen Maru Gothic", sans-serif;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+
+.search-button:hover {
+    transform: translateY(-3px);
+    box-shadow:
+        0 7px 15px rgba(70, 70, 50, 0.15);
+}
+
+
+
+/* =====================================
+   Cooking Level
+===================================== */
+
+.level-card {
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 25px;
+    padding: 30px 35px;
+    margin-top: 40px;
+    margin-bottom: 50px;
+}
+
+.level-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.level-card h2 {
+    font-family: "DotGothic16", sans-serif;
+    font-size: 30px;
+    margin: 5px 0;
+}
+
+
+.level-icon {
+    font-size: 35px;
+}
+
+
+.level-bar {
+    width: 100%;
+    height: 10px;
+    background: #e5ded4;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 15px;
+}
+
+
+.level-progress {
+    width: 80%;
+    height: 100%;
+    background: #a5ad8d;
+    border-radius: 10px;
+}
+
+
+.level-text {
+    color: #938578;
+    font-size: 13px;
+    margin-top: 10px;
+}
+
+
+
+/* =====================================
+   最近作った料理
+===================================== */
+
+.recent-section {
+    margin-bottom: 40px;
+}
+
+
+.section-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: 20px;
+}
+
+
+.section-title h2 {
+    font-size: 25px;
+    margin: 5px 0 0;
+}
+
+
+.section-title a {
+    color: #8d9a79;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+
+
+/* 料理カード */
+.recipe-cards {
+    display: grid;
+    grid-template-columns:
+        repeat(3, 1fr);
+    gap: 20px;
+}
+
+
+.recipe-card {
+    background: white;
+    padding: 16px;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow:
+        0 5px 20px rgba(80, 60, 40, 0.07);
+    transition: 0.25s;
+}
+
+
+.recipe-card:hover {
+    transform: translateY(-5px);
+    box-shadow:
+        0 10px 25px rgba(80, 60, 40, 0.12);
+}
+
+
+.recipe-image {
+    height: 150px;
+    background: #eee5d8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 55px;
+}
+
+
+.recipe-info {
+    padding: 20px;
+}
+
+
+.recipe-info h3 {
+    margin: 0 0 8px;
+    font-size: 19px;
+}
+
+
+.recipe-info p {
+    color: #9a8d81;
+    font-size: 12px;
+    margin-bottom: 12px;
+}
+
+
+.recipe-info strong {
+    display: block;
+    color: #665548;
+    margin-bottom: 8px;
+}
+
+
+.recipe-info span {
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+
+
+
+/* =====================================
+   料理追加ボタン
+===================================== */
+
+.add-section {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.add-recipe-button {
+    border: 1px dashed #b8a999;
+    background: transparent;
+    color: #766759;
+    padding: 15px 30px;
+    border-radius: 30px;
+    font-family: "Zen Maru Gothic", sans-serif;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.add-recipe-button:hover {
+    background: white;
+    transform: translateY(-2px);
+}
+
+
+
+
+/* =====================================
+   料理追加フォーム
+===================================== */
+/* フォーム全体 */
+.recipe-form {
+    /* 最初は表示しない */
+    display: none;
+    /* 白っぽい背景 */
+    background: rgba(255, 255, 255, 0.8);
+    /* 角を丸くする */
+    border-radius: 25px;
+    /* 内側の余白 */
+    padding: 35px;
+    /* 上との距離 */
+    margin-top: 30px;
+    /* フォームの幅 */
+    max-width: 600px;
+    /* 左右中央にする */
+    margin-left: auto;
+    margin-right: auto;
+    /* 影 */
+    box-shadow:
+        0 5px 20px rgba(80, 60, 40, 0.08);
+}
+
+
+/* フォームのタイトル */
+.recipe-form h2 {
+    /* 上の余白をなくす */
+    margin-top: 0;
+    /* 下に少し余白 */
+    margin-bottom: 25px;
+}
+
+
+/* ラベル */
+.recipe-form label {
+    /* 縦に並べる */
+    display: block;
+    /* 下に余白 */
+    margin-bottom: 18px;
+    /* 文字を少し小さく */
+    font-size: 14px;
+}
+
+
+/* 入力欄 */
+.recipe-form input {
+    /* 横幅いっぱい */
+    width: 100%;
+    /* box-sizingについては後で説明するよ */
+    box-sizing: border-box;
+    /* 内側の余白 */
+    padding: 12px 15px;
+    /* 上の文字との距離 */
+    margin-top: 7px;
+    /* 枠線 */
+    border: 1px solid #ded4c8;
+    /* 角丸 */
+    border-radius: 12px;
+    /* 背景 */
+    background: #fffdf9;
+    /* フォント */
+    font-family: "Zen Maru Gothic", sans-serif;
+}
+
+
+/* 保存ボタン */
+#saveRecipeButton {
+    /* 枠線なし */
+    border: none;
+    /* ボタンの色 */
+    background: #8d9a79;
+    /* 文字色 */
+    color: white;
+    /* 内側の余白 */
+    padding: 12px 30px;
+    /* 丸いボタン */
+    border-radius: 25px;
+    /* マウスを乗せたとき指にする */
+    cursor: pointer;
+    /* フォント */
+    font-family: "Zen Maru Gothic", sans-serif;
+}
+
+
+
+/* =====================================
+   料理フォーム追加部分
+===================================== */
+
+
+/* 分類・評価の選択ボックス */
+
+.recipe-form select {
+
+    /* 横幅いっぱい */
+    width: 100%;
+    /* 枠からはみ出さないようにする */
+    box-sizing: border-box;
+    /* 内側の余白 */
+    padding: 12px 15px;
+    /* 上の文字との距離 */
+    margin-top: 7px;
+    /* 枠線 */
+    border: 1px solid #ded4c8;
+    /* 角を丸くする */
+    border-radius: 12px;
+    /* 背景色 */
+    background: #fffdf9;
+    /* フォント */
+    font-family: "Zen Maru Gothic", sans-serif;
+    /* 文字サイズ */
+    font-size: 14px;
+}
+
+
+
+/* 1食あたりの結果 */
+
+.price-result {
+    /* 少し目立つ背景 */
+    background: #f0eadf;
+    /* 角丸 */
+    border-radius: 15px;
+    /* 内側の余白 */
+    padding: 15px 20px;
+    /* 上下の余白 */
+    margin: 20px 0;
+    /* 中央揃え */
+    text-align: center;
+}
+
+
+.price-result p {
+    /* 文字を小さく */
+    font-size: 13px;
+    /* 色 */
+    color: #8d7e70;
+    /* 余白 */
+    margin: 0 0 5px;
+
+}
+
+
+.price-result strong {
+
+    /* 値段を大きく */
+    font-size: 24px;
+
+    /* 色 */
+    color: #625345;
+
+}
+
+
+
+/* メモ欄 */
+
+.recipe-form textarea {
+    /* 横幅 */
+    width: 100%;
+    /* 枠からはみ出さない */
+    box-sizing: border-box;
+    /* 高さ */
+    min-height: 100px;
+    /* 内側の余白 */
+    padding: 12px 15px;
+    /* 上との距離 */
+    margin-top: 7px;
+    /* 枠線 */
+    border: 1px solid #ded4c8;
+    /* 角丸 */
+    border-radius: 12px;
+    /* 背景 */
+    background: #fffdf9;
+    /* フォント */
+    font-family: "Zen Maru Gothic", sans-serif;
+    /* 文字サイズ */
+    font-size: 14px;
+    /* 縦方向だけサイズ変更可能 */
+    resize: vertical;
+
+}
+
+
+
+
+/* =====================================
+   料理削除ボタン
+===================================== */
+
+.delete-recipe-button {
+    /* ボタンの背景 */
+    background: #f3e9e1;
+    /* 枠線をなくす */
+    border: none;
+    /* 文字色 */
+    color: #8c7465;
+    /* 内側の余白 */
+    padding: 7px 12px;
+    /* 角を丸くする */
+    border-radius: 15px;
+    /* 上との距離 */
+    margin-top: 12px;
+    /* マウスを乗せたとき指にする */
+    cursor: pointer;
+    /* フォント */
+    font-family: "Zen Maru Gothic", sans-serif;
+    /* 文字サイズ */
+    font-size: 12px;
+
+}
+
+
+/* マウスを乗せたとき */
+
+.delete-recipe-button:hover {
+
+    /* 少し濃くする */
+    background: #e9d8cc;
+
+}
+
+
+/* ========================================
+   今日何作ろう？
+======================================== */
+
+/* 条件を選ぶ部分 */
+.menu-search {
+    /* 縦ではなく横に並べる */
+    display: flex;
+    /* 要素同士の間隔 */
+    gap: 10px;
+    /* 縦方向を中央にする */
+    align-items: center;
+}
+
+
+/* セレクトボックス */
+.menu-search select {
+    /* 背景 */
+    background: #fffaf3;
+    /* 枠線 */
+    border: 1px solid #e6d8c9;
+    /* 角を丸くする */
+    border-radius: 15px;
+    /* 内側の余白 */
+    padding: 10px 14px;
+    /* フォント */
+    font-family:
+        "Zen Maru Gothic",
+        sans-serif;
+    /* 文字サイズ */
+    font-size: 13px;
+    /* 文字色 */
+    color: #6f6258;
+    /* マウスを乗せたら指 */
+    cursor: pointer;
+}
+
+
+/* ========================================
+   検索結果
+======================================== */
+
+.menu-result {
+    /* 上との距離 */
+    margin-top: 30px;
+    
+}
+
+/* 検索結果のカード */
+.menu-result-card {
+    /* 背景 */
+    background: rgba(255, 255, 255, 0.75);
+    /* 枠線 */
+    border: 1px solid #eadfd5;
+    /* 角を丸くする */
+    border-radius: 20px;
+    /* 内側の余白 */
+    padding: 20px;
+    /* 文字 */
+    color: #6f6258;
+    /* 横幅 */
+    max-width: 500px;
+}
+
+
+/* 料理名 */
+.menu-result-card h3 {
+    /* 上の余白をなくす */
+    margin-top: 0;
+    /* 文字サイズ */
+    font-size: 20px;
+}
+
+
+/* 1食あたりの値段 */
+.menu-result-price {
+    /* 太字 */
+    font-weight: bold;
+    /* 少し大きく */
+    font-size: 18px;
+}
+
+
+/* 結果がない場合 */
+.no-result {
+    /* 文字を中央 */
+    text-align: center;
+    /* 文字色 */
+    color: #9b8d82;
+    /* 内側の余白 */
+    padding: 20px;
+}
+
+
+
+
+/* ========================================
+   今月の食費グラフ
+======================================== */
+
+.food-chart-section {
+    /* 上との距離 */
+    margin-top: 50px;
+}
+
+
+/* グラフ全体のカード */
+.food-chart-card {
+
+    /* 背景 */
+    background: rgba(255, 255, 255, 0.65);
+    /* 枠線 */
+    border: 1px solid #eadfd5;
+    /* 角を丸くする */
+    border-radius: 25px;
+    /* 内側の余白 */
+    padding: 30px;
+}
+
+
+/* ========================================
+   グラフ
+======================================== */
+
+.food-chart {
+    /* 棒を横に並べる */
+    display: flex;
+    /* 下側をそろえる */
+    align-items: flex-end;
+    /* 棒同士の間隔 */
+    gap: 25px;
+    /* グラフの高さ */
+    height: 220px;
+    /* 下の余白 */
+    padding: 20px 10px 0;
+}
+
+
+/* ========================================
+   棒グラフの1本
+======================================== */
+
+.food-bar-container {
+
+    /* 横幅 */
+    flex: 1;
+
+    /* グラフの下側にそろえる */
+    height: 100%;
+
+    /* 縦方向に配置 */
+    display: flex;
+
+    flex-direction: column;
+
+    /* 下にそろえる */
+    justify-content: flex-end;
+
+    /* 中央揃え */
+    align-items: center;
+
+}
+
+
+/* 棒 */
+
+.food-bar {
+
+    /* 横幅 */
+    width: 55px;
+
+    /* 最低限の高さ */
+    min-height: 4px;
+
+    /* 棒の角を丸く */
+    border-radius: 12px 12px 5px 5px;
+
+    /* 背景 */
+    background: #d8bfae;
+
+    /* アニメーション */
+    transition: 0.3s;
+
+}
+
+
+/* マウスを乗せたとき */
+
+.food-bar:hover {
+
+    /* 少し上に動かす */
+    transform: translateY(-5px);
+
+}
+
+
+/* ========================================
+   週の名前
+======================================== */
+
+.food-week-label {
+
+    /* 上との距離 */
+    margin-top: 10px;
+
+    /* 文字サイズ */
+    font-size: 12px;
+
+    /* 文字色 */
+    color: #8c7b70;
+
+}
+
+
+/* ========================================
+   金額
+======================================== */
+
+.food-bar-price {
+
+    /* 棒の上との距離 */
+    margin-bottom: 5px;
+
+    /* 文字サイズ */
+    font-size: 11px;
+
+    /* 文字色 */
+    color: #8c7b70;
+
+}
+
+
+/* ========================================
+   今月の合計
+======================================== */
+.food-chart-total {
+    /* 上との距離 */
+    margin-top: 25px;
+    /* 上に線 */
+    border-top: 1px solid #eadfd5;
+    /* 上下の余白 */
+    padding-top: 20px;
+    /* 横並び */
+    display: flex;
+    /* 左右に分ける */
+    justify-content: space-between;
+    /* 中央揃え */
+    align-items: center;
+}
+
+
+.food-chart-total span {
+    /* 文字色 */
+    color: #8c7b70;
+}
+
+.food-chart-total strong {
+    /* 金額を大きく */
+    font-size: 24px;
+    /* 文字色 */
+    color: #6f6258;
+}
+
+
+
+
+/* ========================================
+   Cooking Level
+======================================== */
+
+
+/* レベルゲージの外側 */
+.level-bar {
+    /* 横幅いっぱい */
+    width: 100%;
+    /* ゲージの高さ */
+    height: 12px;
+    /* 背景 */
+    background: #eee4da;
+    /* 丸くする */
+    border-radius: 20px;
+    /* はみ出した部分を隠す */
+    overflow: hidden;
+
+}
+
+
+/* 実際に進む部分 */
+.level-progress {
+    /* 最初の幅 */
+    width: 0%;
+    /* 高さ */
+    height: 100%;
+    /* 背景 */
+    background: #c8b59f;
+    /* 丸くする */
+    border-radius: 20px;
+    /* なめらかに伸びる */
+    transition: width 0.6s ease;
+
+}
+
+
+
+
+/* ========================================
+   料理写真
+======================================== */
+/* 写真プレビューの場所 */
+.image-preview {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 14px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+/* プレビュー画像 */
+.image-preview img {
+    /* 横幅 */
+    width: 100px;
+    /* 高さ */
+    height: 100px;
+    /* 枠からはみ出さない */
+    object-fit: cover;
+    /* 角を丸くする */
+    border-radius: 18px;
+    /* 枠線 */
+    border: 1px solid #eadfd5;
+}
+
+
+
+
+
+
+/* ========================================
+   料理カードの写真
+======================================== */
+.recipe-image {
+    /* 横幅いっぱい */
+    width: 100%;
+    /* 写真の高さ */
+    height: 180px;
+    /* はみ出した部分を隠す */
+    overflow: hidden;
+    /* 上の角を丸くする */
+    border-radius: 18px 18px 0 0;
+}
+
+/* 実際の画像 */
+.recipe-image img {
+    /* カードいっぱいにする */
+    width: 100%;
+    height: 100%;
+    /* 写真の比率を保ちながら切り抜く */
+    object-fit: cover;
+}
+
+
+
+
+/* ========================================
+   Cooking Level の称号
+======================================== */
+.level-title {
+    /* 上との距離 */
+    margin-top: 8px;
+    /* 文字サイズ */
+    font-size: 15px;
+    /* 少し太くする */
+    font-weight: bold;
+    /* 文字色 */
+    color: #8b7768;
+
+}
+
+
+
+
+/* ========================================
+   献立記録
+======================================== */
+/* セクション */
+.meal-section {
+    /* 上との距離 */
+    margin-top: 50px;
+}
+
+/* 献立フォームのカード */
+.meal-card {
+    /* 背景 */
+    background: rgba(255, 255, 255, 0.7);
+    /* 枠線 */
+    border: 1px solid #eadfd5;
+    /* 角を丸くする */
+    border-radius: 25px;
+    /* 内側の余白 */
+    padding: 30px;
+}
+
+/* 入力項目 */
+.meal-form-group {
+    /* 下との距離 */
+    margin-bottom: 20px;
+}
+
+/* ラベル */
+.meal-form-group label {
+    /* ブロック表示 */
+    display: block;
+    /* 下との距離 */
+    margin-bottom: 8px;
+    /* 文字を少し太く */
+    font-weight: bold;
+    /* 色 */
+    color: #77685e;
+}
+
+/* セレクトボックス */
+.meal-form-group select,
+.meal-form-group input {
+    /* 横幅 */
+    width: 100%;
+    /* 内側の余白 */
+    padding: 12px 15px;
+    /* 枠 */
+    border: 1px solid #e5d8cd;
+    /* 角 */
+    border-radius: 12px;
+    /* 背景 */
+    background: #fffdf9;
+    /* 文字 */
+    font-family: inherit;
+    /* 文字サイズ */
+    font-size: 14px;
+}
+
+/* 保存ボタン */
+.save-meal-button {
+    /* 横幅 */
+    width: 100%;
+    /* 内側の余白 */
+    padding: 14px;
+    /* 枠を消す */
+    border: none;
+    /* 角 */
+    border-radius: 15px;
+    /* 背景 */
+    background: #d8bfae;
+    /* 文字 */
+    color: white;
+    /* 文字サイズ */
+    font-size: 15px;
+    /* 太字 */
+    font-weight: bold;
+    /* マウス */
+    cursor: pointer;
+    /* アニメーション */
+    transition: 0.2s;
+}
+
+/* マウスを乗せたとき */
+.save-meal-button:hover {
+    transform: translateY(-2px);
+
+}
+
+
+
+
+/* ========================================
+   献立一覧
+======================================== */
+.saved-meals-section {
+    /* 上との距離 */
+    margin-top: 50px;
+}
+
+/* 献立カードを並べる場所 */
+.meal-cards {
+    /* 縦に並べる */
+    display: grid;
+    grid-template-columns:
+        repeat(3, 1fr);
+    /* カード同士の間 */
+    gap: 18px;
+}
+
+/* 献立カード */
+.saved-meal-card {
+    /* 背景 */
+    background: #fffdf9;
+    /* 枠線 */
+    border: 1px solid #eadfd5;
+    /* 角 */
+    border-radius: 18px;
+    /* 内側 */
+    padding: 18px;
+    /* 影 */
+    box-shadow:
+        0 5px 15px rgba(100, 80, 60, 0.06);
+}
+
+/* 日付 */
+.meal-date {
+    /* 文字サイズ */
+    font-size: 13px;
+    /* 色 */
+    color:  #888;
+    /* 下との距離 */
+    margin-bottom: 12px;
+}
+
+/* 献立名 */
+.meal-menu {
+    /* 文字サイズ */
+    font-size: 17px;
+    /* 太字 */
+    font-weight: bold;
+    /* 色 */
+    color: #66564c;
+    margin: 8px 0;
+}
+
+/* 料理を並べる場所 */
+.meal-dishes {
+    /* 上との距離 */
+    margin-top: 15px;
+    /* 縦に並べる */
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    line-height: 1.7;
+}
+
+
+/* 料理1つ */
+
+.meal-dish {
+    /* 横並び */
+    display: flex;
+    justify-content: space-between;
+    /* 内側 */
+    padding: 8px 0;
+    /* 下線 */
+    border-bottom:
+        1px dashed #e5d8cd;
+    font-size: 14px;
+}
+
+
+/* 値段 */
+.meal-price {
+    /* 太字 */
+    font-weight: bold;
+    /* 色 */
+    color: #a8755c;
+    font-size: 18px;
+}
+
+/* 合計金額 */
+.meal-total {
+    /* 上との距離 */
+    margin-top: 18px;
+    /* 文字を右寄せ */
+    text-align: right;
+    /* 太字 */
+    font-weight: bold;
+    /* 文字サイズ */
+    font-size: 18px;
+    /* 色 */
+    color: #765a4c;
+
+}
+
+
+
+
+/* ========================================
+   献立カード下部
+======================================== */
+
+.meal-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+}
+
+
+/* 合計金額 */
+
+.meal-total {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
+/* 献立削除ボタン */
+
+.delete-meal-button {
+    border: none;
+    background: transparent;
+    color: #999;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+
+.delete-meal-button:hover {
+    color: #d66;
+}
+
+
+
+
+
+@media (max-width: 700px) {
+    .meal-cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 700px) {
+    .recipe-cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+
+
+/* ========================================
+   最近作った料理
+   すべて見るボタン
+======================================== */
+
+.show-all-button {
+    border: none;
+    background: none;
+
+    padding: 0;
+
+    color: #8f7a70;
+
+    font-size: 14px;
+
+    cursor: pointer;
+}
+
+
+.show-all-button:hover {
+    opacity: 0.7;
+}
+
+/* ========================================
+   折りたたみ 共通
+======================================== */
+
+.section-toggle-button {
+    width: 36px;
+    height: 36px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #f3e8df;
+    color: #8f7a70;
+
+    font-size: 22px;
+    font-weight: 300;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: 0.2s;
+}
+
+
+.section-toggle-button:hover {
+    transform: scale(1.08);
+    background: #eadbd0;
+}
+
+
+/* ========================================
+   折りたたみ状態
+======================================== */
+
+.is-hidden {
+    display: none;
+}
